@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Call of Duty Code Redeemer",
+  "version": "1.0",
+  "description": "Redeem codes in Call of Duty Profile",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
