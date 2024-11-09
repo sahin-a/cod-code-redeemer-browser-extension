@@ -7,6 +7,9 @@
     "activeTab",
     "storage"
   ],
+  "host_permissions": [
+    "https://profile.callofduty.com/promotions/redeemCode/"
+  ],
   "action": {
     "default_popup": "popup.html"
   }
