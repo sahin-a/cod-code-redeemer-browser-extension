@@ -104,12 +104,16 @@ async function redeemCodeWithDelay(code, delay) {
 
 function recordSuccess(code) {
     const resultView = createSuccessView(code)
-    resultsDiv.appendChild(resultView);
+    insertResultRecord(resultView);
 }
 
 function recordFailure(code, reason) {
     const resultView = createFailureView(code, reason)
-    resultsDiv.appendChild(resultView);
+    insertResultRecord(resultView);
+}
+
+function insertResultRecord(recordView) {
+    resultsDiv.prepend(recordView);
 }
 
 function createSuccessView(code) {
