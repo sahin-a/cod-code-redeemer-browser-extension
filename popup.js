@@ -49,6 +49,18 @@ function updateProgressIndicator(currentPosition, codesCount) {
     setVisibility(progressIndicator, true)
     progressIndicator.textContent = `Codes remaining: ${codesCount - currentPosition}`;
 }
+
+async function extractErrorMessageFromHtml(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const errorContainer = doc.querySelector('.error-messaging-container');
+    if (errorContainer) {
+        const errorMessage = errorContainer.querySelector('p.sso-message').textContent;
+        return errorMessage;
+    } else {
+        return null;
+    }
 }
 
 async function redeemCode(code) {
@@ -65,8 +77,14 @@ async function redeemCode(code) {
         });
 
         if (response.ok) {
-            // If the status code is 200, ignore the body content
-            return 'Code redeemed successfully';
+            const data = await response.text();
+            const errorMessage = await extractErrorMessageFromHtml(data);
+
+            if (errorMessage) {
+                throw new Error(`Code redemption failed: ${errorMessage}`);
+            } else {
+                return 'Code redeemed successfully';
+            }
         } else {
             const data = await response.json();
             throw new Error(`Error redeeming code: ${data.message || response.statusText}`);
