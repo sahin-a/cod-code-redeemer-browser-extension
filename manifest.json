@@ -3,10 +3,6 @@
   "name": "Call of Duty Code Redeemer",
   "version": "1.0",
   "description": "Redeem codes in Call of Duty Profile",
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
   "host_permissions": [
     "https://profile.callofduty.com/promotions/redeemCode/"
   ],
