@@ -47,8 +47,8 @@ function setVisibility(element, show) {
 
 function updateProgressIndicator(currentPosition, codesCount) {
     setVisibility(progressIndicator, true)
-    progressIndicator.textContent = currentPosition < codesCount
-        ? `Codes remaining: ${codesCount - currentPosition}` : "I'm done baby";
+    progressIndicator.textContent = `Codes remaining: ${codesCount - currentPosition}`;
+}
 }
 
 async function redeemCode(code) {
