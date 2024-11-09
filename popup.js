@@ -50,7 +50,7 @@ function setVisibility(element, show) {
 
 function updateProgressIndicator(attemptedCodesCount, totalCodesCount) {
     setVisibility(progressIndicator, true)
-    progressIndicator.textContent = `Codes remaining: ${totalCodesCount - attemptedCodesCount}`;
+    progressStatus.textContent = `Codes remaining: ${totalCodesCount - attemptedCodesCount}`;
 }
 
 async function extractErrorMessageFromHtml(html) {
