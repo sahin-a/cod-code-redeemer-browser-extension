@@ -24,16 +24,19 @@ async function startRedeemProcess() {
         return;
     }
 
-    let position = 1
-    for (const code of codes) {
-        updateProgressIndicator(position++, codes.length)
+    let attemptedCodesCount = 0
 
+    updateProgressIndicator(attemptedCodesCount, codes.length)
+
+    for (const code of codes) {
         try {
             const result = await redeemCodeWithDelay(code, delay);
             recordSuccess(code);
         } catch (error) {
             recordFailure(code, error.message);
         }
+
+        updateProgressIndicator(++attemptedCodesCount, codes.length)
     }
 }
 
@@ -45,9 +48,9 @@ function setVisibility(element, show) {
     }
 }
 
-function updateProgressIndicator(currentPosition, codesCount) {
+function updateProgressIndicator(attemptedCodesCount, totalCodesCount) {
     setVisibility(progressIndicator, true)
-    progressIndicator.textContent = `Codes remaining: ${codesCount - currentPosition}`;
+    progressIndicator.textContent = `Codes remaining: ${totalCodesCount - attemptedCodesCount}`;
 }
 
 async function extractErrorMessageFromHtml(html) {
